@@ -1,16 +1,19 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -29,6 +32,7 @@ public class GUI_2 {
 		principal.setLayout(new BorderLayout());
 		principal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		helpMenu();
+		painel_Sup();
 	}
 
 	public void helpMenu() {
@@ -78,11 +82,20 @@ public class GUI_2 {
 				emails.setLayout(new BorderLayout());
 				send.add(emails);
 
-				JLabel label = new JLabel("Send an email to Admin");
-				emails.add(label, BorderLayout.NORTH);
+				JPanel topo = new JPanel(new GridLayout(1, 2));
+				JLabel label = new JLabel("Email");
+				final JTextField mail_space = new JTextField();
+				topo.add(label);
+				topo.add(mail_space);
+				emails.add(topo, BorderLayout.NORTH);
 
-				final JTextArea write = new JTextArea();
-				emails.add(write, BorderLayout.CENTER);
+				JPanel center = new JPanel(new GridLayout(1, 2));
+				final JTextArea write_Description = new JTextArea();
+				write_Description.setLineWrap(true);
+				JLabel description = new JLabel("Description");
+				center.add(description);
+				center.add(write_Description);
+				emails.add(center, BorderLayout.CENTER);
 
 				JButton sendButton = new JButton("Send");
 				emails.add(sendButton, BorderLayout.SOUTH);
@@ -91,7 +104,7 @@ public class GUI_2 {
 
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("Email com sucesso");
-						SenderMail sendMail = new SenderMail("rubenfederer@gmail.com", write.getText());
+						SenderMail sendMail = new SenderMail(mail_space.getText(), write_Description.getText());
 						sendMail.sendNow();
 
 					}
@@ -100,6 +113,25 @@ public class GUI_2 {
 		});
 
 		principal.add(duvidas, BorderLayout.NORTH);
+	}
+	
+	public void painel_Sup() {
+		JPanel superior_Panel = new JPanel(new GridLayout(2, 2));
+		String[] algoritmos = { "AbYSS", "CellDE", "dMPOSO", "GDE3", "FastPGA", "IBEA", "MOCHC", "MOCell", "MOEA/D-DE", "pMOEA/D-DE", 
+				"MOEA/D-DRA", "NSGA-II", "ssNSGA-II", "NSGAIIr", "pNSGA-II", "OMOPSO", "PAES", "SMPSO", "pSMPSO", "SMPSOhv", 
+				"SPEA2"};
+
+		JLabel name_Problem = new JLabel("Problem");
+		JLabel description_Problem = new JLabel("Problem Description");
+		JComboBox problems_List = new JComboBox(algoritmos);
+		JTextArea description_Text = new JTextArea();
+		description_Text.setLineWrap(true);
+		
+		superior_Panel.add(name_Problem);
+		superior_Panel.add(problems_List);
+		superior_Panel.add(description_Problem);
+		superior_Panel.add(description_Text);
+		principal.add(superior_Panel, BorderLayout.NORTH);
 	}
 
 	public void open() {

@@ -9,8 +9,8 @@ public class SenderMail {
 
 	private String mailOrigem;
 	private String texto;
-	private String systemMail = "rubenfederer@gmail.com";
-	private String systemPw = "ralphlauren";
+	private String systemMail = "es2g26@gmail.com";
+	private String systemPw = "engenheriasoftware";
 
 	public SenderMail(String mailOrigem, String texto) {
 		this.mailOrigem = mailOrigem;
@@ -19,7 +19,7 @@ public class SenderMail {
 
 	public void sendNow() {
 		// Recipient's email ID needs to be mentioned.
-		String to = "rubenfederer@gmail.com";
+		String to = "es2g26@gmail.com";
 
 		// Sender's email ID needs to be mentioned
 		String from = mailOrigem;
@@ -52,13 +52,13 @@ public class SenderMail {
 			MimeMessage message = new MimeMessage(session);
 
 			// Set From: header field of the header.
-			message.setFrom(new InternetAddress(from));
+			message.setFrom(new InternetAddress(systemMail));
 
 			// Set To: header field of the header.
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
 			// Set Subject: header field
-			message.setSubject("This is the Subject Line!");
+			message.setSubject("User: " + from + " sent you a message");
 
 			// Now set the actual message
 			message.setText(texto);
