@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <XML>	
-	<Administrator Name="Joao Silva" email="joao@iscte-iul.pt"/>
+	<Administrator Name="Elmo Muacho" email="emcmo@iscte-iul.pt"/>
+	<Administrator Name="Rodrigo Mesquita" email="rbmma@iscte-iul.pt"/>
+	<Administrator Name="Ruben Beirao" email="rasbo@iscte-iul.pt"/>
+	<Administrator Name="Tiago Santos" email="tmmss@iscte-iul.pt"/>
 	<Paths>
 		<jMetalPath>/users/abc/def</jMetalPath>
 		<jarsPath>/users/xyz/kyw</jarsPath>

@@ -131,7 +131,7 @@ public class GUI_2 {
 		superior_Panel.add(problems_List);
 		superior_Panel.add(description_Problem);
 		superior_Panel.add(description_Text);
-		principal.add(superior_Panel, BorderLayout.NORTH);
+		principal.add(superior_Panel, BorderLayout.CENTER);
 	}
 
 	public void open() {
