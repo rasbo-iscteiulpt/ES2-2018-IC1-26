@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.List;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -26,13 +29,16 @@ public class GUI_2 {
 
 	private JFrame principal;
 	private String nomeProblema;
+	private JPanel medium_Panel;
 
 	public void criar_GUI() {
 		principal = new JFrame(nomeProblema);
-		principal.setLayout(new BorderLayout());
+		//principal.setLayout(new BorderLayout());
+		principal.setLayout(new GridLayout(3, 1));
 		principal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		helpMenu();
 		painel_Sup();
+		painel_Med();
 	}
 
 	public void helpMenu() {
@@ -112,26 +118,47 @@ public class GUI_2 {
 			}
 		});
 
-		principal.add(duvidas, BorderLayout.NORTH);
+		//principal.add(duvidas, BorderLayout.NORTH);
+		principal.add(duvidas);
 	}
-	
+
 	public void painel_Sup() {
 		JPanel superior_Panel = new JPanel(new GridLayout(2, 2));
-		String[] algoritmos = { "AbYSS", "CellDE", "dMPOSO", "GDE3", "FastPGA", "IBEA", "MOCHC", "MOCell", "MOEA/D-DE", "pMOEA/D-DE", 
-				"MOEA/D-DRA", "NSGA-II", "ssNSGA-II", "NSGAIIr", "pNSGA-II", "OMOPSO", "PAES", "SMPSO", "pSMPSO", "SMPSOhv", 
-				"SPEA2"};
+		String[] algoritmos = { "AbYSS", "CellDE", "dMPOSO", "GDE3", "FastPGA", "IBEA", "MOCHC", "MOCell", "MOEA/D-DE",
+				"pMOEA/D-DE", "MOEA/D-DRA", "NSGA-II", "ssNSGA-II", "NSGAIIr", "pNSGA-II", "OMOPSO", "PAES", "SMPSO",
+				"pSMPSO", "SMPSOhv", "SPEA2" };
 
 		JLabel name_Problem = new JLabel("Problem");
 		JLabel description_Problem = new JLabel("Problem Description");
 		JComboBox problems_List = new JComboBox(algoritmos);
 		JTextArea description_Text = new JTextArea();
 		description_Text.setLineWrap(true);
-		
+
 		superior_Panel.add(name_Problem);
 		superior_Panel.add(problems_List);
 		superior_Panel.add(description_Problem);
 		superior_Panel.add(description_Text);
-		principal.add(superior_Panel, BorderLayout.CENTER);
+//		principal.add(superior_Panel, BorderLayout.CENTER);
+		principal.add(superior_Panel);
+	}
+
+	public void painel_Med() {
+		medium_Panel = new JPanel(new GridLayout(2, 2));
+		create_Table();
+//		principal.add(medium_Panel, BorderLayout.CENTER);
+		principal.add(medium_Panel);
+	}
+
+	public void create_Table() {
+		JTable table = new JTable(new TableModel());
+		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+		table.setFillsViewportHeight(true);
+
+		// Create the scroll pane and add the table to it.
+		JScrollPane scrollPane = new JScrollPane(table);
+
+		// Add the scroll pane to this panel.
+		medium_Panel.add(scrollPane);
 	}
 
 	public void open() {
